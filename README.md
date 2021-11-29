@@ -4,42 +4,52 @@
 
 | Column              |    Type     | Option 
 
-#userテーブル
+#users table
 | nickname            | string      | null: false        |
-| email               | string      | null: false        | ユニーク制約
+| email               | string      | null: false unique: true| 
 | encrypted_password  | string      | null: false        |
-| kanji last name     | string      | null: false        |
-| kanji first name    | string      | null: false        |
-| kana last name      | string      | null: false        |
-| kana first name     | string      | null: false        |
-| birthday year       | string      | null: false        |
-| birthday month      | string      | null: false        |
-| birthday day        | string      | null: false        |
+| kanji_last_name     | string      | null: false        |
+| kanji_first_name    | string      | null: false        |
+| kana_last_name      | string      | null: false        |
+| kana_first_name     | string      | null: false        |
+| birth_date          | date        | null: false        |
+
+has_many: items
+has_many: purchases 
 
 
-#item テーブル       
-| item name           | string      | null: false        |
+#items table      
+| item_name           | string      | null: false        |
 | explain             | text        | null: false        |
 | category            | string      | null: false        |
 | status              | string      | null: false        |
-| delivery cost       | string      | null: false        |
-| delivery place      | string      | null: false        |
-| delivery day        | int         | null: false        |
-| value               | int         | null: false        |
-| user                | references  | null: false        | 外部キー
+| delivery_cost       | string      | null: false        |
+| delivery_place      | string      | null: false        |
+| delivery_day        | integer     | null: false        |
+| price               | integer     | null: false        |
+| user_id             | references  | null: false foreign_key: true|
+
+belongs_to: users
+has_one: purchase
 
 
 
-#purchase テーブル
-| card number         | string      | null: false        |
-| valid month         | string      | null: false        |
-| valid year          | string      | null: false        |
-| security cord       | string      | null: false        |
-| post cord           | string      | null: false        |
+#purchases table
+| post_cord           | string      | null: false        |
 | prefecture          | string      | null: false        |
 | city                | string      | null: false        |
 | address             | string      | null: false        |
 | building            | string      |                    |
-| phone number        | string      | null: false        |
-| user                | references  | null: false        | 外部キー
-| sell                | references  | null: false        |　外部キー
+| phone_number        | string      | null: false        |
+| user_id             | references  | null: false  foreign_key: true     |
+| item_id             | references  | null: false  foreign_key: true     |
+
+belongs_to: users
+belongs_to: purchases
+has_one: histories 
+
+#histories table
+| user_id              | references | null: false  foreign_key: true     | 
+| item_id              | references | null: false  foreign_key: true     |
+
+belongs_to purchases
