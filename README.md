@@ -15,17 +15,24 @@
 | birthday month     | string      | null: false    |
 | birthday day       | string      | null: false    |
 
-# items テーブル
-| name                | string      | null: false        |
+
+#sell テーブル       
+| item name           | string      | null: false        |
+| explain             | text        | null: false        |
 | category            | string      | null: false        |
+| status              | string      | null: false        |
+| delivery cost       | string      | null: false        |
+| delivery place      | string      | null: false        |
+| delivery day        | int         | null: false        |
 | value               | int         | null: false        |
 | user                | string      | null: false        |
 
 
+
 #purchase テーブル
-| user                | string      | null: false        |
-| place               | string      | ------------------------------ |
-| ------ | ---------- | ------------------------------ |
+| card                | string      | null: false        |
+| valid  month        | string      | null: false        |
+| valid   | ---------- | ------------------------------ |
 | ------ | ---------- | ------------------------------ |
 | ------ | ---------- | ------------------------------ |
 | ------ | ---------- | ------------------------------ |
