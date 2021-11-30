@@ -37,7 +37,7 @@ has_one: purchase
 | item                 | references | null: false  foreign_key: true     |
 
 belongs_to: user
-belongs_to: purchase
+belongs_to: item
 has_one: address
 
 
