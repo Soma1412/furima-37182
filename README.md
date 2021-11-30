@@ -1,24 +1,61 @@
-# README
+# furima テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+| Column              |    Type     | Option 
 
-* System dependencies
+#users table
+| nickname            | string      | null: false        |
+| email               | string      | null: false unique: true| 
+| encrypted_password  | string      | null: false        |
+| kanji_last_name     | string      | null: false        |
+| kanji_first_name    | string      | null: false        |
+| kana_last_name      | string      | null: false        |
+| kana_first_name     | string      | null: false        |
+| birth_date          | date        | null: false        |
 
-* Configuration
+has_many: items
+has_many: purchases 
 
-* Database creation
 
-* Database initialization
+#items table      
+| item_name           | string      | null: false        |
+| explain             | text        | null: false        |
+| category_id         | integer     | null: false        |
+| condition_id           | integer     | null: false        |
+| delivery_cost_id    | integer     | null: false        |
+| delivery_place_id   | integer     | null: false        |
+| delivery_day_id     | integer     | null: false        |
+| price               | integer     | null: false        |
+| user                | references  | null: false foreign_key: true|
 
-* How to run the test suite
+belongs_to: user
+has_one: purchase
 
-* Services (job queues, cache servers, search engines, etc.)
+#purchases table
+| user                 | references | null: false  foreign_key: true     | 
+| item                 | references | null: false  foreign_key: true     |
 
-* Deployment instructions
+belongs_to: user
+belongs_to: item
+has_one: address
 
-* ...
+
+#addresses table
+| post_cord           | string      | null: false        |
+| prefecture_id       | integer     | null: false        |
+| city                | string      | null: false        |
+| address             | string      | null: false        |
+| building            | string      |                    |
+| phone_number        | string      | null: false        |
+| purchase            | references  | null: false  foreign_key: true     |
+
+belongs_to: purchase
+
+
+
+
+
+
+
+
