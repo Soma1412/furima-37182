@@ -48,9 +48,9 @@ has_one: address
 | address             | string      | null: false        |
 | building            | string      |                    |
 | phone_number        | string      | null: false        |
-| item                | references  | null: false  foreign_key: true     |
+| purchase            | references  | null: false  foreign_key: true     |
 
-belongs_to: purchases
+belongs_to: purchase
 
 
 
