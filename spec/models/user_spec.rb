@@ -65,12 +65,6 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
 
-    # it 'nicknameが7文字以上では登録できない' do
-    #   user.nickname = 'aaaaaaaaa'
-    #   @user.valid?
-    #   expect(@user.errors.full_message).to include("Nickname is too long (maximum is 6 characters)")
-    # end
-
     it '名前は苗字が空では登録できない' do
       @user.kanji_last_name = ''
       @user.valid?
@@ -122,6 +116,18 @@ RSpec.describe User, type: :model do
       @user.birth_date = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Birth date can't be blank")
+    end
+    
+    it 'パスワードが英字のみの場合登録できない' do
+      @user.password = 'aiwuesk'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+    end
+    
+    it 'パスワードが数字のみの場合登録出来ない' do
+      @user.password = '1111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
     end
   end
  end
