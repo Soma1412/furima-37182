@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  # before_action :another_user, only[:new]
+
   def index
   #   @item = Item.all
   end
@@ -10,6 +12,12 @@ class ItemsController < ApplicationController
   def delete
   end
 
+  def new
+  end
+
+  def create
+  end
+  
   private
 
   def message_params
