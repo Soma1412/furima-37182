@@ -13,15 +13,16 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.all
   end
 
   def create
   end
-  
+
   private
 
-  def message_params
-    params.require(:item).permit(:image).merge(user_id: current_user.id)
+  def item_params
+    params.require(:item).permit(:image, :item_name, :explain, :price).merge(user_id: current_user.id)
   end
 
 
