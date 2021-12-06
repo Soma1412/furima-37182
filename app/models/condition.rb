@@ -1,5 +1,4 @@
 class Condition < ActiveHash::Base
-belongs_to :item
 self.data = [
   { id: 0, name: '--' },
   { id: 1, name: '新品・未使用' },
@@ -7,7 +6,8 @@ self.data = [
   { id: 3, name: '目立った傷や汚れなし' },
   { id: 4, name: 'やや傷や汚れあり' },
   { id: 5, name: '傷や汚れあり' },
-  { id: 6, name: '全体的に状態が悪い' },
-  
+  { id: 6, name: '全体的に状態が悪い' }
 ]
+include ActiveHash::Associations
+belongs_to :item
 end

@@ -1,5 +1,5 @@
-class Category_id < ActiveHash::Base
-belongs_to :item
+class Category < ActiveHash::Base
+
 self.data = [
    { id: 0, name: '--' },
    { id: 1, name: 'レディース' },
@@ -10,7 +10,10 @@ self.data = [
    { id: 6, name: 'おもちゃ・ホビー・グッズ' },
    { id: 7, name: '家電・スマホ・カメラ' },
    { id: 8, name: 'スポーツ・レジャー' },
-   { id: 9, name: 'ハンドメイド' }
+   { id: 9, name: 'ハンドメイド' },
    { id: 10, name: 'その他' }
 ]
+
+include ActiveHash::Associations
+belongs_to :item
 end
