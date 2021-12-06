@@ -8,6 +8,6 @@ FactoryBot.define do
     delivery_cost_id         {"1"}
     delivery_place_id        {"1"}
     delivery_day_id          {"1"}
-    price                    {"1500"}
+    price                    {1500}
   end
 end

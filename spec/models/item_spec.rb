@@ -40,9 +40,9 @@ RSpec.describe Item, type: :model do
 
 
     it 'priceが10,000,000円以上は出品できない' do
-      @item.price = '900,000,000,000'
+      @item.price = '100,000,000,000'
       @item.valid?
-      expect(@item.errors.full_messages).to include("a")
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
 
     it 'categoryが空だと出品できない' do
