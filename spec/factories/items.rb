@@ -1,6 +1,9 @@
 FactoryBot.define do
   factory :item do
-    association :user                      
+    association :user 
+    after(:build) do |item|
+      item.image.attach(io: File.open('public/images/test_img.png'), filename: 'test_img.png')
+    end                     
     item_name                {"りんご"}
     explain                  {"美味しい"}
     category_id              {"5"}

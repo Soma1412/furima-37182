@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
+    sleep(0.1)
   end
 
   describe '商品の出品' do
@@ -45,35 +46,56 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
 
-    it 'categoryが空だと出品できない' do
-      @item.category_id = ''
+    it 'priceが299円以下は出品できない' do
+      @item.price = '280'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank")
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
 
-    it 'sales statusが空だと出品できない' do
-      @item.condition_id= ''
+
+    it 'カテゴリーに「---」が選択されている場合は出品できない' do
+      @item.category_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition can't be blank")
+      expect(@item.errors.full_messages).to include("Category must be other than 0")
     end
 
-    it 'shipping feeが空だと出品できない' do
-      @item.delivery_cost_id = ''
+    it '商品の状態に「---」が選択されている場合は出品できない' do
+      @item.condition_id= '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery cost can't be blank")
+      expect(@item.errors.full_messages).to include("Condition must be other than 0")
     end
 
-    it 'prefectureが空だと出品できない' do
-      @item.delivery_place_id = ''
+    it '配送料の負担に「---」が選択されている場合は出品できない' do
+      @item.delivery_cost_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery place can't be blank")
+      expect(@item.errors.full_messages).to include("Delivery cost must be other than 0")
     end
 
-    it 'scheduled deliveryが空だと出品できない' do
-      @item.delivery_day_id = ''
+    it '発送元の地域に「---」が選択されている場合は出品できない' do
+      @item.delivery_place_id = '0'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Delivery day can't be blank")
+      expect(@item.errors.full_messages).to include("Delivery place must be other than 0")
     end
+
+    it '発送までの日数に「---」が選択されている場合は出品できない' do
+      @item.delivery_day_id = '0'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Delivery day must be other than 0")
+    end
+
+    it'商品画像が空では出品出来ない' do
+    @item.image = nil
+    @item.valid?
+    expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
+
+    it 'ユーザーが紐付いていなければ投稿できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
+    end
+
+  
   end
  end
 end

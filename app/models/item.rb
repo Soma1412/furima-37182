@@ -8,13 +8,14 @@ class Item < ApplicationRecord
 
 
   validates :item_name,           presence: true
-  validates :explain,             presence: true 
-  validates :category_id,         presence: true
-  validates :condition_id,        presence: true
-  validates :delivery_cost_id,    presence: true
-  validates :delivery_day_id,     presence: true
-  validates :delivery_place_id,   presence: true
+  validates :explain,             presence: true
+  validates :category_id,         presence: true, numericality: { other_than: 0 }
+  validates :condition_id,        presence: true, numericality: { other_than: 0 }
+  validates :delivery_cost_id,    presence: true, numericality: { other_than: 0 }
+  validates :delivery_day_id,     presence: true, numericality: { other_than: 0 }
+  validates :delivery_place_id,   presence: true, numericality: { other_than: 0 }
   validates :price,               presence: true, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/}
+  validates :image,               presence: true
 
   belongs_to :user
   has_one    :purchase

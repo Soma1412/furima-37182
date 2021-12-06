@@ -9,5 +9,5 @@ self.data = [
   { id: 6, name: '全体的に状態が悪い' }
 ]
 include ActiveHash::Associations
-belongs_to :item
+has_many :items
 end

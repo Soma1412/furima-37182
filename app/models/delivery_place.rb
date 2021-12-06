@@ -19,6 +19,6 @@ self.data = [
   {id: 46, name: '鹿児島県'}, {id: 47, name: '沖縄県'}
 ]
 include ActiveHash::Associations
-belongs_to :item
+has_many :items
   
 end
