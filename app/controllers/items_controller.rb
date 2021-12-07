@@ -15,8 +15,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def delete
-  end
 
   def new
     @item = Item.new
