@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.where(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def edit
