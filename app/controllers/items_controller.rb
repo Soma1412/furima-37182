@@ -38,7 +38,9 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to action: :index
+    unless current_user.id == @item.user.id
+      redirect_to action: :index
+   end
   end
 
 
@@ -46,9 +48,6 @@ class ItemsController < ApplicationController
 
   def multi_action
     @item = Item.find(params[:id])
-    unless current_user.id == @item.user.id
-      redirect_to action: :index
-   end
  end
 
   def item_params
