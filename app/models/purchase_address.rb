@@ -14,5 +14,4 @@ class PurchaseAddress
     # 住所を保存する
     Address.create(post_code: post_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone_number: phone_number, purchase_id: purchase.id)
   end
-  end
 end
