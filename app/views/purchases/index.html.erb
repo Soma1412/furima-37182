@@ -1,10 +1,11 @@
 <%= render "shared/second-header"%>
-
 <div class='transaction-contents'>
   <div class='transaction-main'>
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
+    <%= form_with url: item_purchases_path, model: @purchase_address, local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %> 
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
       <%= image_tag "item-sample.png", class: 'buy-item-img' %>
@@ -123,6 +124,7 @@
     <div class='buy-btn'>
       <%= f.submit "購入" ,class:"buy-red-btn", id:"button" %>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>
