@@ -1,6 +1,6 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :token, :post_code, :delivery_place_id, :city, :address, :building, :phone_number, :purchase, :user, :item
+  attr_accessor :item_id, :token, :post_code, :delivery_place_id, :city, :address, :building, :phone_number, :purchase, :user_id 
   with_options presence: true do
     # ひらがな、カタカナ、漢字のみ許可する
     validates :city, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."}
@@ -11,10 +11,11 @@ class PurchaseAddress
     validates :delivery_place_id,    numericality: { other_than: 0 }
     # 空の値は保存できない
     validates :address
+    validates :token
   end
 
   def save
-    purchase = Purchase.create(price: price, user_id: user_id)
+    purchase = Purchase.create(item_id: item_id, user_id: user_id)
     # 住所を保存する
     Address.create(post_code: post_code, delivery_place_id: delivery_place_id, city: city, address: address, building: building, phone_number: phone_number, purchase_id: purchase.id)
   end
