@@ -3,10 +3,10 @@ class PurchasesController < ApplicationController
   before_action :find, only:[:index, :create] 
 
   def index
-    @purchase_address = PurchaseAddress.new
-    if @item.purchase.nil? || current_user.id == @item.user_id
-      redirect_to root_path
-    end
+      if !@item.purchase.nil? || current_user.id == @item.user_id
+        redirect_to root_path
+      end
+    @purchase_address = PurchaseAddress.new    
   end
 
   def create
