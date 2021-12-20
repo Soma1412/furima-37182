@@ -7,9 +7,9 @@ class PurchaseAddress
     validates :city, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."}
     # 半角英字数字のみ許可する
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input crrectly" }
-    validates :phone_number, format: {with: /\A[0-9]{11}\z/, message: "is invalid."}
+    validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "is invalid."}
     # delivery_place_idは0以外選択できない
-    validates :delivery_place_id,    numericality: { other_than: 0 }
+    validates :delivery_place_id,numericality: { other_than: 0 }
     # 空の値は保存できない
     validates :address
     validates :token
