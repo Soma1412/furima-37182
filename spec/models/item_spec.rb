@@ -18,19 +18,19 @@ RSpec.describe Item, type: :model do
     it 'item_nameが空では出品できない' do
       @item.item_name = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Item name can't be blank")
+      expect(@item.errors.full_messages).to include("商品名を入力してください")
     end
 
     it 'infoが空だと出品できない' do
       @item.explain = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Explain can't be blank")
+      expect(@item.errors.full_messages).to include("商品の説明を入力してください")
     end
 
     it 'priceが空だと出品できない' do
       @item.price = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank")
+      expect(@item.errors.full_messages).to include("値段を入力してください")
     end
 
     it 'priceは半角数字以外での入力は出品できない' do

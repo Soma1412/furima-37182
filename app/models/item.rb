@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :delivery_cost_id,    presence: true, numericality: { other_than: 0 }
   validates :delivery_day_id,     presence: true, numericality: { other_than: 0 }
   validates :delivery_place_id,   presence: true, numericality: { other_than: 0 }
-  validates :price,               presence: true, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/}
+  validates :price,               presence: true, inclusion: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/, massage: 'は半角数字で入力してください' }
   validates :image,               presence: true
 
   belongs_to :user
